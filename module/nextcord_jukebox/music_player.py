@@ -163,7 +163,7 @@ class MusicPlayer:
                     timer = time.time()
                     print(colored(f"Extracting Song... {new.title}", "dark_grey"))
 
-                    data = ytdlp.extract_info(new.url, download=False),
+                    data = (ytdlp.extract_info(new.url, download=False),)
 
                     print(
                         colored(
