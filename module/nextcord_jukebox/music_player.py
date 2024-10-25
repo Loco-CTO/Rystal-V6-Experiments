@@ -485,7 +485,9 @@ class MusicPlayer:
         return "list" in query_params
 
     @pre_check(check_fetching_stream=True)
-    async def queue(self, interaction: Interaction, query: str, shuffle_added: bool=False):
+    async def queue(
+        self, interaction: Interaction, query: str, shuffle_added: bool = False
+    ):
         """
         Queues a song or playlist based on the given query.
 
