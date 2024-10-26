@@ -27,7 +27,8 @@ import logging
 import nextcord
 from nextcord.ext import commands
 
-from config.loader import enable_activity_logging, logging_channel_id, type_color
+from config.loader import (enable_activity_logging, logging_channel_id,
+                           type_color)
 
 
 class Logger(commands.Cog):
@@ -65,7 +66,8 @@ class Logger(commands.Cog):
             inline=False,
         )
 
-        embed.add_field(name="User", value=f"{interaction.user.name}", inline=False)
+        embed.add_field(
+            name="User", value=f"{interaction.user.name}", inline=False)
         if "options" in interaction.data:
             embed.add_field(
                 name="Options",

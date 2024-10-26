@@ -30,7 +30,8 @@ import nextcord
 from config.loader import lang, type_color
 from database.guild_handler import get_guild_language
 from module.embeds.generic import Embeds
-from module.nextcord_jukebox.exceptions import EmptyQueue, NotPlaying, NothingPlaying
+from module.nextcord_jukebox.exceptions import (EmptyQueue, NothingPlaying,
+                                                NotPlaying)
 from module.nextcord_jukebox.music_player import MusicPlayer
 from module.nextcord_jukebox.song import Song
 from module.progressBar import progressBar
@@ -137,7 +138,8 @@ class NowPlayingMenu(nextcord.ui.View):
 
         elapsed_time_str = str(timedelta(seconds=round(time_elapsed)))
         duration_str = str(timedelta(seconds=self.song.duration))
-        progress_bar = progressBar.splitBar(self.song.duration, round(time_elapsed))[0]
+        progress_bar = progressBar.splitBar(
+            self.song.duration, round(time_elapsed))[0]
 
         embed.add_field(
             name=f"{progress_bar} | {elapsed_time_str}/{duration_str}",

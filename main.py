@@ -21,30 +21,29 @@
 #  ------------------------------------------------------------
 #
 
-import sys
-
-sys.dont_write_bytecode = True
-
 import asyncio
 import datetime
 import logging
 import os
+import sys
 import traceback
 
 import nest_asyncio
 import nextcord
 from dotenv import load_dotenv
-
-nest_asyncio.apply()
-load_dotenv()
-
 from nextcord.ext import commands
 from termcolor import colored
 
 from config.loader import bot_owner_id, error_log_channel_id, lang
-
 from database.guild_handler import get_guild_language
 from module.embeds.generic import Embeds
+
+sys.dont_write_bytecode = True
+
+
+nest_asyncio.apply()
+load_dotenv()
+
 
 TOKEN = os.getenv("TOKEN")
 intents = nextcord.Intents.default()
@@ -172,7 +171,8 @@ async def setup():
 
             try:
                 bot.load_extension(f"cogs.{module_name}")
-                print(colored(text=f"Cogs: {module_name} is ready!", color="green"))
+                print(
+                    colored(text=f"Cogs: {module_name} is ready!", color="green"))
                 cogs += 1
             except Exception as exception:
                 full_error = traceback.format_exception(

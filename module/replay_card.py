@@ -158,16 +158,19 @@ def create_top_songs_poster(
         ("assets/logo.png", (60, 90), (100, 100)),
         ("assets/get-it-on-github.png", (292, 1160), (215, 83)),
     ]:
-        canvas.paste(Image.open(path).resize(size), pos, Image.open(path).resize(size))
+        canvas.paste(Image.open(path).resize(size),
+                     pos, Image.open(path).resize(size))
 
     draw.text((170, 95), title, font=fonts["title"], fill="#ffffff")
-    draw.text((170, 140), description, font=fonts["description"], fill="#ffffff")
+    draw.text((170, 140), description,
+              font=fonts["description"], fill="#ffffff")
     draw.line((50, 250, 750, 250), fill="#1c1f26", width=3)
 
     details_x = 55
     for text in detail_texts or []:
         details_x += (
-            draw_rounded_text(text, fonts["details"], 15, 4, 15, (details_x, 205)) + 10
+            draw_rounded_text(
+                text, fonts["details"], 15, 4, 15, (details_x, 205)) + 10
         )
 
     for i, song in enumerate(songs):
@@ -181,7 +184,8 @@ def create_top_songs_poster(
             else song["replays"]
         )
 
-        draw.text((50, y_pos + 22), str(i + 1), font=fonts["index"], fill="#576175")
+        draw.text((50, y_pos + 22), str(i + 1),
+                  font=fonts["index"], fill="#576175")
         load_timer = time.time()
         thumbnail = (
             load_image_from_url(get_smallest_thumbnail(song["thumbnails"]))
@@ -191,8 +195,10 @@ def create_top_songs_poster(
         print(f"Loaded IMG, time taken {time.time() - load_timer}ms")
 
         canvas.paste(thumbnail, (80, y_pos + 8), thumbnail)
-        draw.text((150, y_pos + 5), song_text, font=fonts["song"], fill="#ffffff")
-        draw.text((150, y_pos + 40), artist_text, font=fonts["artist"], fill="#97A8CB")
+        draw.text((150, y_pos + 5), song_text,
+                  font=fonts["song"], fill="#ffffff")
+        draw.text((150, y_pos + 40), artist_text,
+                  font=fonts["artist"], fill="#97A8CB")
         draw.text(
             (750, y_pos + 30),
             replay_text,
@@ -202,7 +208,8 @@ def create_top_songs_poster(
         )
 
         if i < len(songs) - 1:
-            draw.line((50, y_pos + 80, 750, y_pos + 80), fill="#1c1f26", width=2)
+            draw.line((50, y_pos + 80, 750, y_pos + 80),
+                      fill="#1c1f26", width=2)
         print(f"Generated {i}, time taken {time.time() - timer}ms")
 
     draw.rectangle((750, 0, 800, 250), fill="#16181d")

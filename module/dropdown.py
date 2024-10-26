@@ -67,7 +67,8 @@ class DropdownSelector(Select):
             placeholder=placeholder,
             min_values=1,
             max_values=1,
-            options=[SelectOption(label=option, value=option) for option in options],
+            options=[SelectOption(label=option, value=option)
+                     for option in options],
         )
         self.callback_func = callback
         self.async_callback_func = async_callback

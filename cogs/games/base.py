@@ -26,18 +26,14 @@ import secrets
 import nextcord
 from nextcord.ext import commands
 
-from config.loader import (
-    default_language,
-    jackpot_base_amount,
-    jackpot_tax_rate,
-    jackpot_win_global_announcement,
-    lang,
-    type_color,
-)
+from config.loader import (default_language, jackpot_base_amount,
+                           jackpot_tax_rate, jackpot_win_global_announcement,
+                           lang, type_color)
 from config.perm import auth_guard
 from database import user_handler
 from database.global_handler import change_global, get_global
-from database.guild_handler import get_guild_language, get_jackpot_announcement_channels
+from database.guild_handler import (get_guild_language,
+                                    get_jackpot_announcement_channels)
 from module.embeds.blackjack import BlackjackView
 from module.embeds.generic import Embeds
 from module.embeds.jackpot import create_jackpot_embed
@@ -333,9 +329,9 @@ class GameSystem(commands.Cog):
 
         message_mapper = {
             RouletteResult.ZEROS: "roulette_won_zeros",
-            RouletteResult.RED  : "roulette_won",
+            RouletteResult.RED: "roulette_won",
             RouletteResult.BLACK: "roulette_won",
-            RouletteResult.LOST : "roulette_lost",
+            RouletteResult.LOST: "roulette_lost",
         }
 
         user_data = await user_handler.get_user_data(user_id)
@@ -396,7 +392,7 @@ class GameSystem(commands.Cog):
                 points=format_number(
                     bet
                     if outcome
-                       in {RouletteResult.RED, RouletteResult.BLACK, RouletteResult.LOST}
+                    in {RouletteResult.RED, RouletteResult.BLACK, RouletteResult.LOST}
                     else bet * 5
                 )
             ),
@@ -475,7 +471,8 @@ class GameSystem(commands.Cog):
                 await change_global("jackpot_total", jackpot_base_amount)
                 bot_data = await user_handler.get_user_data(self.bot.user.id)
                 bot_data["points"] += (
-                    bot_tax - round(new_total - jackpot_total) - jackpot_base_amount
+                    bot_tax - round(new_total - jackpot_total) -
+                    jackpot_base_amount
                 )
             elif deficient_score:
                 new_total = round(jackpot_total * 0.8)
@@ -484,7 +481,8 @@ class GameSystem(commands.Cog):
                 await change_global("jackpot_total", jackpot_base_amount)
                 bot_data = await user_handler.get_user_data(self.bot.user.id)
                 bot_data["points"] += (
-                    bot_tax + round(jackpot_total - new_total) - jackpot_base_amount
+                    bot_tax + round(jackpot_total - new_total) -
+                    jackpot_base_amount
                 )
             else:
                 bot_tax = round(jackpot_tax_rate * jackpot_total)

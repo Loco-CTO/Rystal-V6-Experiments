@@ -181,7 +181,8 @@ class Spinner:
                 else "No mega scores"
             )
             print(
-                "deficient score rate: {:.2f}%".format((deficient_scores / wins) * 100)
+                "deficient score rate: {:.2f}%".format(
+                    (deficient_scores / wins) * 100)
                 if deficient_scores != 0
                 else "No deficient scores"
             )

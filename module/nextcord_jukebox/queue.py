@@ -43,9 +43,11 @@ class Queue:
     async def remove(self, song):
         if song in self.queue:
             self.queue.remove(song)
-            print(colored(text=f"Removed {song.title} from the queue", color="green"))
+            print(
+                colored(text=f"Removed {song.title} from the queue", color="green"))
             return True
-        print(colored(text=f"{song.title} not found in the queue", color="red"))
+        print(
+            colored(text=f"{song.title} not found in the queue", color="red"))
         return False
 
     async def batch_add_to_queue(self, songs):
@@ -70,7 +72,8 @@ class Queue:
             song.channel_url = video.channel_url
             song.extracted_metadata = True
             print(colored(text=f"{song.title} [{song.url}]", color="magenta"))
-            print(colored(text=f"Time taken: {time.time() - timer}", color="dark_grey"))
+            print(
+                colored(text=f"Time taken: {time.time() - timer}", color="dark_grey"))
         except Exception as e:
             print(colored(f"Failed to extract {song.url}: {e}", color="red"))
         return

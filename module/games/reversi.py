@@ -42,9 +42,9 @@ class Reversi:
 
     def serialize(self):
         return {
-            "board"       : self.board,
+            "board": self.board,
             "current_turn": self.current_turn,
-            "history"     : self.history,
+            "history": self.history,
         }
 
     @classmethod
@@ -358,7 +358,7 @@ class Interactor:
 
     def serialize(self):
         return {
-            "game"           : self.game.serialize(),
+            "game": self.game.serialize(),
             "ai_player_black": (
                 self.ai_player_black.serialize() if self.ai_player_black else None
             ),
@@ -431,15 +431,19 @@ class Interactor:
                 draw.rectangle([x0, y0, x1, y1], outline="#333333")
                 piece = board[i][j]
                 if piece == "B":
-                    draw.ellipse([x0 + 5, y0 + 5, x1 - 5, y1 - 5], fill="#333333")
+                    draw.ellipse(
+                        [x0 + 5, y0 + 5, x1 - 5, y1 - 5], fill="#333333")
                 elif piece == "W":
-                    draw.ellipse([x0 + 5, y0 + 5, x1 - 5, y1 - 5], fill="#f2f2f2")
+                    draw.ellipse(
+                        [x0 + 5, y0 + 5, x1 - 5, y1 - 5], fill="#f2f2f2")
                 elif piece == "*":
-                    draw.text((x0 + 23, y0 + 7), ".", fill="yellow", font=dot_font)
+                    draw.text((x0 + 23, y0 + 7), ".",
+                              fill="yellow", font=dot_font)
 
         for j in range(8):
             x = j * cell_size + outer_line_width + cell_size // 2
-            draw.text((x, 0 + 10), chr(ord("a") + j), fill="#333333", font=font)
+            draw.text((x, 0 + 10), chr(ord("a") + j),
+                      fill="#333333", font=font)
             draw.text(
                 (x, image_size - outer_line_width + 10),
                 chr(ord("a") + j),
@@ -480,7 +484,8 @@ class Interactor:
             return move
         while True:
             move = (
-                input(f"Player {self.game.current_turn}, enter your move (e.g., d3): ")
+                input(
+                    f"Player {self.game.current_turn}, enter your move (e.g., d3): ")
                 .strip()
                 .lower()
             )

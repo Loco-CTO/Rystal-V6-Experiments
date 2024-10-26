@@ -44,13 +44,16 @@ async def register_user(user_id: int):
     try:
         statement = {
             "sqlite": "INSERT INTO note (user_id, notes) VALUES (?, ?)",
-            "mysql" : "INSERT INTO note (user_id, notes) VALUES (%s, %s)",
+            "mysql": "INSERT INTO note (user_id, notes) VALUES (%s, %s)",
         }
-        db_handler.execute(statement, (str(user_id), json.dumps(default_user_data)))
-        print(colored(f"[NOTE DATABASE] Registered User: {user_id}", "light_yellow"))
+        db_handler.execute(
+            statement, (str(user_id), json.dumps(default_user_data)))
+        print(
+            colored(f"[NOTE DATABASE] Registered User: {user_id}", "light_yellow"))
     except Exception as e:
         print(
-            colored(f"[NOTE DATABASE] Failed to Register User: {user_id} - {e}", "red")
+            colored(
+                f"[NOTE DATABASE] Failed to Register User: {user_id} - {e}", "red")
         )
 
 
@@ -72,18 +75,19 @@ async def add_note(user_id: int, note_content: str):
             await register_user(user_id)
         fetch_statement = {
             "sqlite": "SELECT notes FROM note WHERE user_id = ?",
-            "mysql" : "SELECT notes FROM note WHERE user_id = %s",
+            "mysql": "SELECT notes FROM note WHERE user_id = %s",
         }
         db_handler.execute(fetch_statement, (str(user_id),))
         notes = json.loads(db_handler.fetchone()[0] or "{}")
         notes[note_id] = note_content
         update_statement = {
             "sqlite": "UPDATE note SET notes = ? WHERE user_id = ?",
-            "mysql" : "UPDATE note SET notes = %s WHERE user_id = %s",
+            "mysql": "UPDATE note SET notes = %s WHERE user_id = %s",
         }
         db_handler.execute(update_statement, (json.dumps(notes), str(user_id)))
         print(
-            colored(f"[NOTE DATABASE] Note added for User: {user_id}", "light_yellow")
+            colored(
+                f"[NOTE DATABASE] Note added for User: {user_id}", "light_yellow")
         )
     except Exception as e:
         print(
@@ -110,13 +114,14 @@ async def get_notes(user_id: int):
             await register_user(user_id)
         statement = {
             "sqlite": "SELECT notes FROM note WHERE user_id = ?",
-            "mysql" : "SELECT notes FROM note WHERE user_id = %s",
+            "mysql": "SELECT notes FROM note WHERE user_id = %s",
         }
         db_handler.execute(statement, (str(user_id),))
         result = db_handler.fetchone()
         if result:
             return json.loads(result[0])
-        print(colored(f"[NOTE DATABASE] No notes found for User: {user_id}", "yellow"))
+        print(
+            colored(f"[NOTE DATABASE] No notes found for User: {user_id}", "yellow"))
         return {}
     except Exception as e:
         print(
@@ -147,7 +152,7 @@ async def fetch_note(user_id: int, note_id: str) -> str | None:
 
         statement = {
             "sqlite": "SELECT notes FROM note WHERE user_id = ?",
-            "mysql" : "SELECT notes FROM note WHERE user_id = %s",
+            "mysql": "SELECT notes FROM note WHERE user_id = %s",
         }
         db_handler.execute(statement, (str(user_id),))
         result = db_handler.fetchone()
@@ -184,7 +189,7 @@ async def update_note_state(user_id: int, note_id: str, new_state: int):
 
         statement = {
             "sqlite": "SELECT notes FROM note WHERE user_id = ?",
-            "mysql" : "SELECT notes FROM note WHERE user_id = %s",
+            "mysql": "SELECT notes FROM note WHERE user_id = %s",
         }
         db_handler.execute(statement, (str(user_id),))
         result = db_handler.fetchone()
@@ -196,9 +201,10 @@ async def update_note_state(user_id: int, note_id: str, new_state: int):
                 notes[note_id] = json.dumps(note_content)
                 update_statement = {
                     "sqlite": "UPDATE note SET notes = ? WHERE user_id = ?",
-                    "mysql" : "UPDATE note SET notes = %s WHERE user_id = %s",
+                    "mysql": "UPDATE note SET notes = %s WHERE user_id = %s",
                 }
-                db_handler.execute(update_statement, (json.dumps(notes), str(user_id)))
+                db_handler.execute(
+                    update_statement, (json.dumps(notes), str(user_id)))
     except Exception as e:
         print(
             colored(
@@ -228,7 +234,7 @@ async def remove_note(user_id: int, note_id: str) -> bool:
 
         statement = {
             "sqlite": "SELECT notes FROM note WHERE user_id = ?",
-            "mysql" : "SELECT notes FROM note WHERE user_id = %s",
+            "mysql": "SELECT notes FROM note WHERE user_id = %s",
         }
         db_handler.execute(statement, (str(user_id),))
         result = db_handler.fetchone()
@@ -238,9 +244,10 @@ async def remove_note(user_id: int, note_id: str) -> bool:
                 del notes[note_id]
                 update_statement = {
                     "sqlite": "UPDATE note SET notes = ? WHERE user_id = ?",
-                    "mysql" : "UPDATE note SET notes = %s WHERE user_id = %s",
+                    "mysql": "UPDATE note SET notes = %s WHERE user_id = %s",
                 }
-                db_handler.execute(update_statement, (json.dumps(notes), str(user_id)))
+                db_handler.execute(
+                    update_statement, (json.dumps(notes), str(user_id)))
                 return True
         return False
     except Exception as e:

@@ -31,11 +31,11 @@ from module.utils import format_number
 
 # Mapping of BlackjackResult to language keys
 message_mapper = {
-    BlackjackResult.PLAYER_BUSTS    : "blackjack_player_busts",
-    BlackjackResult.DEALER_BUSTS    : "blackjack_dealer_busts",
-    BlackjackResult.TIE             : "blackjack_tie",
-    BlackjackResult.PLAYER_WINS     : "blackjack_player_wins",
-    BlackjackResult.DEALER_WINS     : "blackjack_dealer_wins",
+    BlackjackResult.PLAYER_BUSTS: "blackjack_player_busts",
+    BlackjackResult.DEALER_BUSTS: "blackjack_dealer_busts",
+    BlackjackResult.TIE: "blackjack_tie",
+    BlackjackResult.PLAYER_WINS: "blackjack_player_wins",
+    BlackjackResult.DEALER_WINS: "blackjack_dealer_wins",
     BlackjackResult.PLAYER_BLACKJACK: "blackjack_player_blackjack",
 }
 
@@ -115,7 +115,8 @@ class BlackjackView(nextcord.ui.View):
             view (nextcord.ui.View, optional): The view to attach to the message.
         """
         self.lang = await self.get_lang()
-        embed = nextcord.Embed(title=title, description=description, color=color)
+        embed = nextcord.Embed(
+            title=title, description=description, color=color)
         embed.add_field(
             name=self.lang["blackjack_your_hand"],
             value=f"[{self.blackjack.hand_str(self.blackjack.player_hand)}] {self.lang['blackjack_total'].format(total=player_total)}",
@@ -168,7 +169,7 @@ class BlackjackView(nextcord.ui.View):
                 (
                     type_color["win"]
                     if result
-                       in {BlackjackResult.PLAYER_WINS, BlackjackResult.DEALER_BUSTS}
+                    in {BlackjackResult.PLAYER_WINS, BlackjackResult.DEALER_BUSTS}
                     else (
                         type_color["big_win"]
                         if result == BlackjackResult.PLAYER_BLACKJACK
@@ -193,7 +194,8 @@ class BlackjackView(nextcord.ui.View):
         user_id = self.interaction.user.id
         user_points = (await user_handler.get_user_data(user_id))["points"]
         if interaction.user.id == self.author_id:
-            player_total, game_end = self.blackjack.hit(self.blackjack.player_hand)
+            player_total, game_end = self.blackjack.hit(
+                self.blackjack.player_hand)
             if game_end:
                 result = self.blackjack.check_winner()
                 await self.handle_bet_result(interaction, result)

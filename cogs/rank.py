@@ -25,9 +25,9 @@ from io import BytesIO
 from typing import Optional
 
 import nextcord
-from PIL import Image, ImageDraw, ImageFont
 from nextcord import File
 from nextcord.ext import commands
+from PIL import Image, ImageDraw, ImageFont
 
 from config.loader import default_language, lang, theme_color
 from config.perm import auth_guard
@@ -130,7 +130,7 @@ class RankSystem(commands.Cog):
 
         draw = ImageDraw.Draw(background)
         font_paths = {
-            "title"      : "./font/GoNotoKurrent-Bold.ttf",
+            "title": "./font/GoNotoKurrent-Bold.ttf",
             "description": "./font/GoNotoKurrent-Regular.ttf",
         }
         title_font = ImageFont.truetype(font_paths["title"], 45)
@@ -152,7 +152,8 @@ class RankSystem(commands.Cog):
         draw.text((625, 57), f"{lvl}", font=title_font, fill=theme_color)
 
         name_font = ImageFont.truetype(font_paths["title"], 50)
-        draw.text((200, 100), str(user.global_name), font=name_font, fill=theme_color)
+        draw.text((200, 100), str(user.global_name),
+                  font=name_font, fill=theme_color)
 
         draw.text(
             (560, 160),

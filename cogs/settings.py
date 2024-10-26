@@ -27,12 +27,9 @@ from nextcord.ext import commands
 
 from config.loader import default_language, lang, lang_list, lang_mapping
 from config.perm import auth_guard
-from database.guild_handler import (
-    change_guild_language,
-    change_guild_settings,
-    get_guild_language,
-    get_guild_settings,
-)
+from database.guild_handler import (change_guild_language,
+                                    change_guild_settings, get_guild_language,
+                                    get_guild_settings)
 from module.embeds.generic import Embeds
 
 class_namespace = "setting_class_title"
@@ -145,7 +142,7 @@ class Settings(commands.Cog):
         await change_guild_settings(interaction.guild.id, "music_silent_mode", toggle)
 
         toggle_represent = {
-            True : "on",
+            True: "on",
             False: "off",
         }
 
@@ -174,7 +171,7 @@ class Settings(commands.Cog):
         await change_guild_settings(interaction.guild.id, "music_auto_leave", toggle)
 
         toggle_represent = {
-            True : "on",
+            True: "on",
             False: "off",
         }
 
@@ -212,9 +209,9 @@ class Settings(commands.Cog):
     ):
         await interaction.response.defer(with_message=True)
         loop_mode = {
-            "Off"   : 1,
+            "Off": 1,
             "Single": 2,
-            "All"   : 3,
+            "All": 3,
         }
 
         await change_guild_settings(

@@ -59,7 +59,8 @@ class RPCHandler(EventManager):
             try:
                 self.port: int = int(ws_port)
             except ValueError:
-                raise ValueError("RPC_WEBSOCKET_PORT in .env file must be an integer")
+                raise ValueError(
+                    "RPC_WEBSOCKET_PORT in .env file must be an integer")
         else:
             self.port = 8098
 
@@ -85,11 +86,11 @@ class RPCHandler(EventManager):
                     user_secret,
                     {
                         "version": __socket_standard_version__,
-                        "state"  : "playing",
-                        "data"   : {
-                            "title"    : after.title,
-                            "url"      : after.url,
-                            "channel"  : after.channel,
+                        "state": "playing",
+                        "data": {
+                            "title": after.title,
+                            "url": after.url,
+                            "channel": after.channel,
                             "thumbnail": after.thumbnail,
                         },
                     },
@@ -115,8 +116,8 @@ class RPCHandler(EventManager):
                     user_secret,
                     {
                         "version": __socket_standard_version__,
-                        "state"  : "idle",
-                        "data"   : {},
+                        "state": "idle",
+                        "data": {},
                     },
                 )
                 LogHandler.info(
@@ -146,11 +147,11 @@ class RPCHandler(EventManager):
                 user_secret,
                 {
                     "version": __socket_standard_version__,
-                    "state"  : "playing",
-                    "data"   : {
-                        "title"    : now_playing.title,
-                        "url"      : now_playing.url,
-                        "channel"  : now_playing.channel,
+                    "state": "playing",
+                    "data": {
+                        "title": now_playing.title,
+                        "url": now_playing.url,
+                        "channel": now_playing.channel,
                         "thumbnail": now_playing.thumbnail,
                     },
                 },
@@ -175,11 +176,12 @@ class RPCHandler(EventManager):
                 user_secret,
                 {
                     "version": __socket_standard_version__,
-                    "state"  : "idle",
-                    "data"   : {},
+                    "state": "idle",
+                    "data": {},
                 },
             )
-            LogHandler.info(f"Dispatched idle to {user_secret}[{member.global_name}]")
+            LogHandler.info(
+                f"Dispatched idle to {user_secret}[{member.global_name}]")
         else:
             LogHandler.info(f"Client {member.global_name} not registered")
 
@@ -252,6 +254,7 @@ def attach(manager) -> RPCHandler:
     """
     handler = RPCHandler(manager)
     EventManager.attach(handler)
-    websocket_thread = threading.Thread(target=start_websocket_server, args=(handler,))
+    websocket_thread = threading.Thread(
+        target=start_websocket_server, args=(handler,))
     websocket_thread.start()
     return handler

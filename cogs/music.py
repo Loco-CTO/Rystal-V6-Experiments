@@ -32,7 +32,8 @@ from nextcord import File, Interaction, SlashOption
 from nextcord.ext import commands
 from termcolor import colored
 
-from config.loader import SQLITE_PATH, USE_SQLITE, default_language, lang, type_color
+from config.loader import (SQLITE_PATH, USE_SQLITE, default_language, lang,
+                           type_color)
 from config.perm import auth_guard
 from database.guild_handler import get_guild_language, get_guild_settings
 from module.embeds.generic import Embeds
@@ -41,19 +42,12 @@ from module.embeds.queue import Pagination
 from module.matcher import SongMatcher
 from module.nextcord_jukebox.enums import LOOPMODE
 from module.nextcord_jukebox.event_manager import EventManager
-from module.nextcord_jukebox.exceptions import (
-    AlreadyPaused,
-    EmptyQueue,
-    InvalidPlaylist,
-    LoadingStream,
-    NoQueryResult,
-    NotConnected,
-    NotPaused,
-    NotPlaying,
-    NothingPlaying,
-    UserNotConnected,
-    VoiceChannelMismatch,
-)
+from module.nextcord_jukebox.exceptions import (AlreadyPaused, EmptyQueue,
+                                                InvalidPlaylist, LoadingStream,
+                                                NoQueryResult, NotConnected,
+                                                NothingPlaying, NotPaused,
+                                                NotPlaying, UserNotConnected,
+                                                VoiceChannelMismatch)
 from module.nextcord_jukebox.player_manager import PlayerManager
 from module.nextcord_jukebox.utils import get_playlist_id
 from module.progressBar import progressBar
@@ -67,7 +61,8 @@ class Music(commands.Cog, EventManager):
         self.bot = bot
         self.now_playing_menus = []
         if USE_SQLITE:
-            self.manager = PlayerManager(bot, db_type="sqlite", db_path=SQLITE_PATH)
+            self.manager = PlayerManager(
+                bot, db_type="sqlite", db_path=SQLITE_PATH)
         else:
             self.manager = PlayerManager(
                 bot,
@@ -403,7 +398,8 @@ class Music(commands.Cog, EventManager):
 
             try:
                 now_playing = await music_player.now_playing()
-                duration_song_str = str(timedelta(seconds=now_playing.duration))
+                duration_song_str = str(
+                    timedelta(seconds=now_playing.duration))
                 time_elapsed = now_playing.timer.elapsed
                 duration_passed = round(time_elapsed)
                 duration_passed_str = str(timedelta(seconds=duration_passed))
@@ -420,11 +416,11 @@ class Music(commands.Cog, EventManager):
                     [
                         song
                         for song, _ in SongMatcher.match(
-                        await music_player.current_queue(),
-                        query,
-                        case_sens=False,
-                        threshold=0.8,
-                    )
+                            await music_player.current_queue(),
+                            query,
+                            case_sens=False,
+                            threshold=0.8,
+                        )
                     ]
                     if query.replace(" ", "") != ""
                     else await music_player.current_queue()
@@ -847,9 +843,9 @@ class Music(commands.Cog, EventManager):
         interaction: Interaction, period: str, guild_language: str, result_list
     ):
         period_description = {
-            "Week" : "most_played_week",
+            "Week": "most_played_week",
             "Month": "most_played_month",
-            "Year" : "most_played_year",
+            "Year": "most_played_year",
         }
 
         canvas = create_top_songs_poster(
@@ -912,9 +908,11 @@ class Music(commands.Cog, EventManager):
             metadata = video_metadata.get(video_id, {})
             if metadata:
                 artist = metadata.get("channel", "Unknown")
-                artist_counts[artist] = artist_counts.get(artist, 0) + replay_count
+                artist_counts[artist] = artist_counts.get(
+                    artist, 0) + replay_count
 
-        top_artist = max(artist_counts, key=artist_counts.get, default="Unknown")
+        top_artist = max(artist_counts, key=artist_counts.get,
+                         default="Unknown")
         top_artist_percentage = (
             round(artist_counts.get(top_artist, 0) / total_replays * 100)
             if total_replays
@@ -923,9 +921,9 @@ class Music(commands.Cog, EventManager):
 
         result_list = {
             "total_replayed": len(replay_history),
-            "total_time"    : 0,
-            "replays"       : [],
-            "top_artist"    : {"name": top_artist, "percentage": top_artist_percentage},
+            "total_time": 0,
+            "replays": [],
+            "top_artist": {"name": top_artist, "percentage": top_artist_percentage},
         }
 
         top_replays = sorted(
@@ -941,13 +939,14 @@ class Music(commands.Cog, EventManager):
             metadata = video_metadata.get(video_id, {})
             result_list["replays"].append(
                 {
-                    "title"     : metadata.get("title", ""),
-                    "artist"    : metadata.get("channel", ""),
+                    "title": metadata.get("title", ""),
+                    "artist": metadata.get("channel", ""),
                     "thumbnails": metadata.get("thumbnails", ""),
-                    "replays"   : replay_count,
+                    "replays": replay_count,
                 }
             )
-            result_list["total_time"] += metadata.get("duration", 0) * replay_count
+            result_list["total_time"] += metadata.get(
+                "duration", 0) * replay_count
 
         result_list["replays"].extend(
             {"title": "", "artist": "", "thumbnail": "", "replays": ""}

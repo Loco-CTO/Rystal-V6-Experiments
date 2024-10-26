@@ -45,15 +45,15 @@ from .utils import get_video_id
 yt_dlp.utils.bug_reports_message = lambda: ""
 ytdlp = yt_dlp.YoutubeDL(
     {
-        "format"        : "bestaudio/best",
-        "noplaylist"    : True,
-        "ignoreerrors"  : True,
-        "quiet"         : True,
-        "no_warnings"   : True,
+        "format": "bestaudio/best",
+        "noplaylist": True,
+        "ignoreerrors": True,
+        "quiet": True,
+        "no_warnings": True,
         "source_address": "0.0.0.0",
-        "forceip"       : "4",
-        "skip_download" : True,
-        "extract_flat"  : True,
+        "forceip": "4",
+        "skip_download": True,
+        "extract_flat": True,
         "default_search": "auto",
     }
 )
@@ -164,7 +164,7 @@ class MusicPlayer:
         self._asyncio_lock = asyncio.Lock()
         self._members = []
         self.ffmpeg_opts = ffmpeg_opts or {
-            "options"       : "-vn -af loudnorm",
+            "options": "-vn -af loudnorm",
             "before_options": "-reconnect 1 -reconnect_streamed 1 -reconnect_delay_max 0",
         }
 
@@ -187,7 +187,8 @@ class MusicPlayer:
                     LogHandler.debug("Reconnected to the voice channel.")
                     return True
             except Exception as e:
-                LogHandler.warning(f"Reconnection attempt {attempt + 1} failed: {e}")
+                LogHandler.warning(
+                    f"Reconnection attempt {attempt + 1} failed: {e}")
                 await asyncio.sleep(delay)
         return False
 
@@ -202,10 +203,12 @@ class MusicPlayer:
         """
         if member == self.bot.user:
             if not self.voice or not self.voice.is_connected():
-                LogHandler.warning("Bot is disconnected. Attempting to reconnect...")
+                LogHandler.warning(
+                    "Bot is disconnected. Attempting to reconnect...")
                 await self._attempt_reconnect()
                 if not self.voice or not self.voice.is_connected():
-                    LogHandler.error("Failed to reconnect after multiple attempts.")
+                    LogHandler.error(
+                        "Failed to reconnect after multiple attempts.")
             elif not self.paused:
                 try:
                     await self.resume(forced=True)
@@ -248,10 +251,12 @@ class MusicPlayer:
             try:
                 if self.interaction.guild.voice_client:
                     timer = time.time()
-                    print(colored(f"Extracting Song... {new.title}", "dark_grey"))
+                    print(
+                        colored(f"Extracting Song... {new.title}", "dark_grey"))
 
                     data = await self.loop.run_in_executor(
-                        None, lambda: ytdlp.extract_info(new.url, download=False)
+                        None, lambda: ytdlp.extract_info(
+                            new.url, download=False)
                     )
 
                     print(
@@ -263,7 +268,8 @@ class MusicPlayer:
                     source_url = data["url"]
                     new.source_url = source_url
 
-                    audio_source = FFmpegPCMAudio(source_url, **self.ffmpeg_opts)
+                    audio_source = FFmpegPCMAudio(
+                        source_url, **self.ffmpeg_opts)
                     self.voice.play(
                         PCMVolumeTransformer(audio_source), after=self._after_func
                     )
@@ -276,7 +282,8 @@ class MusicPlayer:
                     expire_unix_time = parse.parse_qs(parse.urlparse(source_url).query)[
                         "expire"
                     ][0]
-                    expire_time = datetime.datetime.fromtimestamp(int(expire_unix_time))
+                    expire_time = datetime.datetime.fromtimestamp(
+                        int(expire_unix_time))
                     print(
                         colored(
                             f"Queue Source (Expire: {expire_time}):\n{source_url}",
@@ -284,7 +291,8 @@ class MusicPlayer:
                         )
                     )
 
-                    print(colored(f"Time taken: {time.time() - timer}", "dark_grey"))
+                    print(
+                        colored(f"Time taken: {time.time() - timer}", "dark_grey"))
 
                     await EventManager.fire(
                         "track_start", self, self.interaction, last, new
@@ -446,27 +454,29 @@ class MusicPlayer:
         if cached_meta is None:
             video = await self.loop.run_in_executor(None, lambda: Video(video_id))
             meta = {
-                "url"        : video.url,
-                "title"      : video.title,
-                "views"      : video.views,
-                "duration"   : video.duration,
-                "thumbnail"  : video.thumbnail,
-                "channel"    : video.channel,
+                "url": video.url,
+                "title": video.title,
+                "views": video.views,
+                "duration": video.duration,
+                "thumbnail": video.thumbnail,
+                "channel": video.channel,
                 "channel_url": video.channel_url,
-                "thumbnails" : video.thumbnails,
+                "thumbnails": video.thumbnails,
             }
             self.database.cache_video_metadata(video_id, meta)
         else:
             meta = cached_meta
 
         song = Song(**meta)
-        print(colored(text=f"[ADDED] {meta['title']} [{meta['url']}]", color="magenta"))
+        print(
+            colored(text=f"[ADDED] {meta['title']} [{meta['url']}]", color="magenta"))
 
         self.music_queue.append(song)
         if not self.paused and self.music_queue and not self._now_playing:
             await self._play_func(None, self.music_queue[0])
 
-        print(colored(text=f"Time taken: {time.time() - timer}", color="dark_grey"))
+        print(
+            colored(text=f"Time taken: {time.time() - timer}", color="dark_grey"))
         return song
 
     @staticmethod
@@ -511,7 +521,8 @@ class MusicPlayer:
                 await EventManager.fire("loading_playlist", self, interaction, None)
 
                 shuffled_playlist = (
-                    random.sample(list(playlist.video_urls), len(playlist.video_urls))
+                    random.sample(list(playlist.video_urls),
+                                  len(playlist.video_urls))
                     if shuffle_added
                     else list(playlist.video_urls)
                 )

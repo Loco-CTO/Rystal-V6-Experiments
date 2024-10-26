@@ -77,7 +77,8 @@ class BugReportModal(nextcord.ui.Modal):
         steps_to_reproduce = self.children[1].value
         expected_behavior = self.children[2].value
 
-        bug_report_channel = interaction.guild.get_channel(bug_report_channel_id)
+        bug_report_channel = interaction.guild.get_channel(
+            bug_report_channel_id)
         if bug_report_channel:
             await bug_report_channel.send(
                 f"**Bug Reported by {interaction.user.mention}[{interaction.user.global_name}]:**\n\n"

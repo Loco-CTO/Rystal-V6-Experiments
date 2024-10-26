@@ -115,7 +115,8 @@ class PlayerManager:
             raise UserNotConnected
 
         if interaction.guild.id not in self.players:
-            self.players[interaction.guild.id] = MusicPlayer(self, interaction, bot)
+            self.players[interaction.guild.id] = MusicPlayer(
+                self, interaction, bot)
             await self.players[interaction.guild.id].connect(interaction)
         else:
             if not interaction.guild.voice_client:

@@ -77,9 +77,11 @@ class System(commands.Cog):
             print(colored(text="Using YTDLP to extract video data", color="dark_grey"))
         else:
             print(
-                colored(text="Using Meta-YT to extract video data", color="dark_grey")
+                colored(text="Using Meta-YT to extract video data",
+                        color="dark_grey")
             )
-        print(colored(text=f"Default language: {default_language}", color="dark_grey"))
+        print(
+            colored(text=f"Default language: {default_language}", color="dark_grey"))
 
     @nextcord.slash_command(
         description=lang[default_language]["system_ping_description"]

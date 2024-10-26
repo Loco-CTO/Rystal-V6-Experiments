@@ -28,10 +28,10 @@ from termcolor import colored
 
 class Logger:
     LOG_LEVELS = {
-        "DEBUG"   : logging.DEBUG,
-        "INFO"    : logging.INFO,
-        "WARNING" : logging.WARNING,
-        "ERROR"   : logging.ERROR,
+        "DEBUG": logging.DEBUG,
+        "INFO": logging.INFO,
+        "WARNING": logging.WARNING,
+        "ERROR": logging.ERROR,
         "CRITICAL": logging.CRITICAL,
     }
 
@@ -44,7 +44,8 @@ class Logger:
         """
         name = "NEXTCORD_JUKEBOX"
         self.logger = logging.getLogger(name)
-        self.logger.setLevel(self._get_logging_level(level))  # Set the logger level
+        self.logger.setLevel(self._get_logging_level(level)
+                             )  # Set the logger level
 
         self._configure_console_handler()
 
@@ -73,7 +74,8 @@ class Logger:
         console_handler = logging.StreamHandler()
         console_handler.setLevel(self.logger.level)
 
-        formatter = logging.Formatter("%(asctime)s:%(levelname)s:%(name)s: %(message)s")
+        formatter = logging.Formatter(
+            "%(asctime)s:%(levelname)s:%(name)s: %(message)s")
         console_handler.setFormatter(formatter)
 
         self.logger.addHandler(console_handler)
@@ -91,10 +93,10 @@ class Logger:
             str: The colored message.
         """
         colors = {
-            "DEBUG"   : "blue",
-            "INFO"    : "green",
-            "WARNING" : "yellow",
-            "ERROR"   : "red",
+            "DEBUG": "blue",
+            "INFO": "green",
+            "WARNING": "yellow",
+            "ERROR": "red",
             "CRITICAL": "magenta",
         }
         return colored(message, colors.get(level, "white"))

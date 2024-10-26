@@ -52,7 +52,7 @@ class DatabaseHandler:
         self.cursor = None
         self.create_query = create_query or {
             "sqlite": {},
-            "mysql" : {},
+            "mysql": {},
         }
 
         if db_type == "sqlite":
@@ -60,7 +60,8 @@ class DatabaseHandler:
         elif db_type == "mysql":
             self._connect_mysql(**kwargs)
         else:
-            raise ValueError("Unsupported database type. Use 'sqlite' or 'mysql'.")
+            raise ValueError(
+                "Unsupported database type. Use 'sqlite' or 'mysql'.")
 
     def _connect_sqlite(self, db_file):
         """

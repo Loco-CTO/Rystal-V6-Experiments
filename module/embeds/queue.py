@@ -126,7 +126,8 @@ class Pagination(nextcord.ui.View):
         self.search_query = ""
         self.total_pages: Optional[int] = None
         self.index = 1
-        self.guild_language = asyncio.run(get_guild_language(interaction.guild.id))
+        self.guild_language = asyncio.run(
+            get_guild_language(interaction.guild.id))
 
         super().__init__(timeout=180)
 
