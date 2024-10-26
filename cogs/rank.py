@@ -25,9 +25,9 @@ from io import BytesIO
 from typing import Optional
 
 import nextcord
-from PIL import Image, ImageDraw, ImageFont
 from nextcord import File
 from nextcord.ext import commands
+from PIL import Image, ImageDraw, ImageFont
 
 from config.loader import default_language, lang, theme_color
 from config.perm import auth_guard

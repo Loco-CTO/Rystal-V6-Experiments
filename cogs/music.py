@@ -32,7 +32,8 @@ from nextcord import File, Interaction, SlashOption
 from nextcord.ext import commands
 from termcolor import colored
 
-from config.loader import SQLITE_PATH, USE_SQLITE, default_language, lang, type_color
+from config.loader import (SQLITE_PATH, USE_SQLITE, default_language, lang,
+                           type_color)
 from config.perm import auth_guard
 from database.guild_handler import get_guild_language, get_guild_settings
 from module.embeds.generic import Embeds
@@ -41,19 +42,12 @@ from module.embeds.queue import Pagination
 from module.matcher import SongMatcher
 from module.nextcord_jukebox.enums import LOOPMODE
 from module.nextcord_jukebox.event_manager import EventManager
-from module.nextcord_jukebox.exceptions import (
-    AlreadyPaused,
-    EmptyQueue,
-    InvalidPlaylist,
-    LoadingStream,
-    NoQueryResult,
-    NotConnected,
-    NotPaused,
-    NotPlaying,
-    NothingPlaying,
-    UserNotConnected,
-    VoiceChannelMismatch,
-)
+from module.nextcord_jukebox.exceptions import (AlreadyPaused, EmptyQueue,
+                                                InvalidPlaylist, LoadingStream,
+                                                NoQueryResult, NotConnected,
+                                                NothingPlaying, NotPaused,
+                                                NotPlaying, UserNotConnected,
+                                                VoiceChannelMismatch)
 from module.nextcord_jukebox.player_manager import PlayerManager
 from module.nextcord_jukebox.utils import get_playlist_id
 from module.progressBar import progressBar

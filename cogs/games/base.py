@@ -26,18 +26,14 @@ import secrets
 import nextcord
 from nextcord.ext import commands
 
-from config.loader import (
-    default_language,
-    jackpot_base_amount,
-    jackpot_tax_rate,
-    jackpot_win_global_announcement,
-    lang,
-    type_color,
-)
+from config.loader import (default_language, jackpot_base_amount,
+                           jackpot_tax_rate, jackpot_win_global_announcement,
+                           lang, type_color)
 from config.perm import auth_guard
 from database import user_handler
 from database.global_handler import change_global, get_global
-from database.guild_handler import get_guild_language, get_jackpot_announcement_channels
+from database.guild_handler import (get_guild_language,
+                                    get_jackpot_announcement_channels)
 from module.embeds.blackjack import BlackjackView
 from module.embeds.generic import Embeds
 from module.embeds.jackpot import create_jackpot_embed

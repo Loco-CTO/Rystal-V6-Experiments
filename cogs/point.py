@@ -27,13 +27,8 @@ from typing import Optional
 import nextcord
 from nextcord.ext import commands
 
-from config.loader import (
-    banland,
-    bot_owner_id,
-    default_language,
-    lang,
-    point_receive_limit,
-)
+from config.loader import (banland, bot_owner_id, default_language, lang,
+                           point_receive_limit)
 from config.perm import auth_guard
 from database import user_handler
 from database.guild_handler import get_guild_language

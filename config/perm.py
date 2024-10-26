@@ -22,7 +22,8 @@
 
 import os
 
-from config.loader import AUTHGUARD_SQLITE_PATH, AUTHGUARD_USE_SQLITE, bot_owner_id
+from config.loader import (AUTHGUARD_SQLITE_PATH, AUTHGUARD_USE_SQLITE,
+                           bot_owner_id)
 from module.nextcord_authguard.authguard import AuthGuard
 
 auth_guard = AuthGuard(
