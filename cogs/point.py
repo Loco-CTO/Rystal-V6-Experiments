@@ -131,6 +131,20 @@ class PointSystem(commands.Cog):
         giver_id = interaction.user.id
         recipient_id = recipient.id
 
+        if giver_id == recipient_id:
+            await interaction.followup.send(
+                embed=Embeds.message(
+                    title=lang[await get_guild_language(interaction.guild.id)][
+                        class_namespace
+                    ],
+                    message=lang[await get_guild_language(interaction.guild.id)][
+                        "points_cannot_give_self"
+                    ],
+                    message_type="error",
+                )
+            )
+            return
+
         if recipient_id in banland:
             await interaction.followup.send(
                 embed=Embeds.message(
