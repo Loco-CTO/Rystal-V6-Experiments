@@ -18,10 +18,12 @@ bug_class_emoji: "🐞"
 bug_class_title: "🐞 | Bug Report"
 changed_volume: "Volume for **{title}** changed to {volume}%!"
 coinflip_lose: "Sorry, you lost {points} points.\nGuess: {guess}\nOutcome: {outcome}"
-coinflip_win: "Congratulations! You won {points} points!\nGuess: {guess}\nOutcome:\
+coinflip_win:
+  "Congratulations! You won {points} points!\nGuess: {guess}\nOutcome:\
   \ {outcome}"
 command_slowdown: "Please slow down and try again later!"
-cooldown_message: "You can only claim points every 20 minutes. Please try again in\
+cooldown_message:
+  "You can only claim points every 20 minutes. Please try again in\
   \ {minutes} minutes and {seconds} seconds."
 cpu: "CPU Usage: {cpu}%"
 currently_playing: "Currently playing... {title}"
@@ -46,7 +48,8 @@ game_coinflip_description: "🎮 | Play a coin flip game!"
 game_dice_amount_description: "The number of dice to roll."
 game_dice_description: "🎮 | Roll dice!"
 game_jackpot_description: "🎮 | Play the jackpot game! (Requires 1000 points)"
-game_jackpot_rules: "### To win, all four columns on the spinner must display the\
+game_jackpot_rules:
+  "### To win, all four columns on the spinner must display the\
   \ same shape and color.\n The spinner can show these shapes and colors: 🟥 🟧 🟨\
   \ 🟩 🟦 🟪 🟫❤️ 🧡 💛 💚 💙 💜🤎 🔴 🟠 🟡 🟢 🔵 🟣 🟤 ⚫ ⚪ 🃏\n\n - Black Circles\
   \ (⚫) can represent any color or shape, including itself (⚫), but not a White Circle.\n\
@@ -63,18 +66,22 @@ game_roulette_bet_description: "The amount of points to bet."
 game_roulette_description: "🎮 | Play a game of Roulette!"
 game_showjackpot_description: "🎮 | Show the jackpot prize!"
 game_your_points: "Your Points:"
-higher_than_receive_limit: "{recipient} cannot receive more than {limit} points per\
+higher_than_receive_limit:
+  "{recipient} cannot receive more than {limit} points per\
   \ day."
 in_different_voice: "You are not in the same voice channel as the bot!"
 interaction_author_only: "This action is only available to the interaction author!"
 invalid_index: "Invalid index!"
 invalid_playlist: "Invalid Playlist!"
-jackpot_announce_deficient_score: "{user} has won {points} points from the jackpot!\
+jackpot_announce_deficient_score:
+  "{user} has won {points} points from the jackpot!\
   \ However, it's a deficient score (0.8x)."
 jackpot_announce_jackpot: "{user} has won {points} points from the jackpot!"
-jackpot_announce_mega_score: "{user} has won {points} points from the Mega Score!\
+jackpot_announce_mega_score:
+  "{user} has won {points} points from the Mega Score!\
   \ 1.5x the jackpot!"
-jackpot_deficient_score: "Congratulations! You won the jackpot! However, it's a deficient\
+jackpot_deficient_score:
+  "Congratulations! You won the jackpot! However, it's a deficient\
   \ score (0.8x). You won {points} points."
 jackpot_game_title: "🎰 | Jackpot"
 jackpot_lost: "Sorry, you lost the jackpot. Better luck next time!"
@@ -117,7 +124,8 @@ music_loop_description: "🎵 | Loop the queue!"
 music_loop_mode_description: "The loop mode to set."
 music_lyrics_description: "Display the lyrics of the song currently playing"
 music_most_played_description: "🎵 | Show the most played songs!"
-music_most_played_period_description: "The time period for showing the most played\
+music_most_played_period_description:
+  "The time period for showing the most played\
   \ songs."
 music_move_current_index_description: "The current index of the song to move."
 music_move_description: "🎵 | Move a song in the queue!"
@@ -134,7 +142,8 @@ music_queue_no_result: "No results found!"
 music_queue_no_result_description: "Please try again with a different query."
 music_register_description: "🎵 | Register or regenerate a secret for our RPC client!"
 music_remove_description: "🎵 | Remove a song from the queue!"
-music_remove_index_description: "The index of the song to remove. Use -1 to remove\
+music_remove_index_description:
+  "The index of the song to remove. Use -1 to remove\
   \ all songs."
 music_resume_description: "🎵 | Resume the music!"
 music_secret: "Your new secret is:\n\n ```{secret}```"
@@ -188,6 +197,7 @@ points_give_amount_description: "The number of points to give."
 points_give_description: "⭐️ | Give points to another user!"
 points_give_force_description: "Force the transaction. (Owner only)"
 points_give_recipient_description: "The recipient of the points."
+points_cannot_give_self: "You cannot give points to yourself."
 points_given: "You have given {amount} points to {recipient}!"
 points_leaderboard_description: "⭐️ | Show the points leaderboard!"
 points_leaderboard_header: "⭐️ | Points Leaderboard - Top {include}"
@@ -214,7 +224,8 @@ rank_class_title: "🎖️ | Ranking Module"
 rank_leaderboard_description: "🎖️ | Show the leaderboard!"
 rank_leaderboard_include_description: "The number of users to include in the leaderboard."
 receive_not_allowed: "{recipient} is not allowed to receive points."
-recipient_limit_reached: "{recipient} has reached their daily limit of receiving points.\
+recipient_limit_reached:
+  "{recipient} has reached their daily limit of receiving points.\
   \ Please try again in {hours} hours, {minutes} minutes, and {seconds} seconds."
 release: "Release: {os_release}"
 removed_song: "Removed **{title}** from the queue!"

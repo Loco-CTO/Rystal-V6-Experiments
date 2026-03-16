@@ -17,9 +17,11 @@ bug_class_decorator: "🐞 | "
 bug_class_emoji: "🐞"
 bug_class_title: "🐞 | 錯誤報告"
 changed_volume: "**{title}** 的音量已更改為 {volume}%！"
-coinflip_lose: "抱歉，您輸掉了 {points} 積分。\n------------------------------\n予想: {guess}\n\
+coinflip_lose:
+  "抱歉，您輸掉了 {points} 積分。\n------------------------------\n予想: {guess}\n\
   結果: {outcome}"
-coinflip_win: "恭喜！您贏得了 {points} 積分！\n------------------------------\n予想: {guess}\n\
+coinflip_win:
+  "恭喜！您贏得了 {points} 積分！\n------------------------------\n予想: {guess}\n\
   結果: {outcome}"
 command_slowdown: "請稍後再試，請放慢速度！"
 cooldown_message: "您每 20 分鐘只能領取一次積分。請在 {minutes} 分鐘 {seconds} 秒後再試。"
@@ -46,7 +48,8 @@ game_coinflip_description: "🎮 | 玩硬幣翻轉！"
 game_dice_amount_description: "擲骰子的數量。"
 game_dice_description: "🎮 | 擲骰子！"
 game_jackpot_description: "🎮 | 玩大獎賭博！（需要 1000 積分）"
-game_jackpot_rules: "### 要贏得大獎，所有三列的轉盤必須顯示相同的形狀和顏色。\n 轉盤可以顯示這些形狀和顏色: 🟥 🟧 🟨 🟩 🟦\
+game_jackpot_rules:
+  "### 要贏得大獎，所有三列的轉盤必須顯示相同的形狀和顏色。\n 轉盤可以顯示這些形狀和顏色: 🟥 🟧 🟨 🟩 🟦\
   \ 🟪 🟫❤️ 🧡 💛 💚 💙 💜🤎 🔴 🟠 🟡 🟢 🔵 🟣 🟤 ⚫ ⚪ 🃏\n\n - 黑色圓圈 (⚫) 可以代表任何顏色或形\
   狀，包括自身 (⚫)，但不能代表白色圓圈。\n\n - 白色圓圈 (⚪) 可以代表任何顏色或形狀，包括自身 (⚪)，但不能代表黑色圓圈。\n\n 如果 🃏 出\
   現在任何一列，您將輸掉大獎。\n\n 如果您贏得大獎，將扣除 25% 的稅金。\n\n 如果您使用萬用符號（白色圓圈 (⚪) 或黑色圓圈 (⚫) 以及其他顏色的\
@@ -62,7 +65,8 @@ in_different_voice: "您不在與機器人相同的語音頻道中！"
 interaction_author_only: "此操作僅對互動作者可用！"
 invalid_index: "無效的索引！"
 invalid_playlist: "無效的播放列表！"
-jackpot_announce_deficient_score: "{user} 從大獎中贏得了 {points} 積分！但是，它是 deficient score（\
+jackpot_announce_deficient_score:
+  "{user} 從大獎中贏得了 {points} 積分！但是，它是 deficient score（\
   0.8 倍）。"
 jackpot_announce_jackpot: "{user} 從大獎中贏得了 {points} 積分！"
 jackpot_announce_mega_score: "{user} 從 Mega Score 中贏得了 {points} 積分！1.5 倍的大獎！"
@@ -177,6 +181,7 @@ points_give_amount_description: "送出的積分數量。"
 points_give_description: "⭐️ | 送出積分給其他用戶！"
 points_give_force_description: "強制進行交易。（僅限擁有者）"
 points_give_recipient_description: "積分的接受者。"
+points_cannot_give_self: "您不能將積分送給自己。"
 points_given: "您已將 {amount} 積分給予 {recipient}！"
 points_leaderboard_description: "⭐️ | 顯示積分排行榜！"
 points_leaderboard_header: "⭐️ | 積分排行榜 - 前 {include}"
@@ -203,7 +208,8 @@ rank_class_title: "🎖️ | 排行榜模組"
 rank_leaderboard_description: "🎖️ | 顯示排行榜！"
 rank_leaderboard_include_description: "排行榜中要包含的用戶數量。"
 receive_not_allowed: "{recipient} 不允許接收積分。"
-recipient_limit_reached: "{recipient} 已達到每日接收積分的上限。 請在{hours}小時 {minutes}分鐘 {seconds}秒\
+recipient_limit_reached:
+  "{recipient} 已達到每日接收積分的上限。 請在{hours}小時 {minutes}分鐘 {seconds}秒\
   \ 後再試。"
 release: "發行版: {os_release}"
 removed_song: "已從隊列中移除 **{title}**！"
